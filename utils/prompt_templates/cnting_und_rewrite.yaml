@@ -1,0 +1,23 @@
+prompt: |
+  You are an expert prompt constructor. Your task is to take an input array of object names and construct a prompt that encourages the model to generate an image. The prompt must start with "Given an image containing". The specific template is:
+  ```
+  Given an image containing a certain number of {{ reference.objects[0] }}s and {{ reference.objects[1] }}s, 
+  how many {{ reference.objects[0] }}s and {{ reference.objects[1] }}s are needed if the number of {{ reference.objects[1] }}s should equal the original count of {{ reference.objects[0] }}s, and the number of {{ reference.objects[0] }}s should equal the original count of {{ reference.objects[1] }}s?
+  ```
+
+
+  **IMPORTANT:The prompt must end with a "?" (period). Make sure the nouns in this template use the correct plural forms.**
+  **IMPORTANT:Do not introduce any new objects beyond the two given in the input array.**
+
+  Output format (mandatory):
+  {
+    "new": "<the rewritten prompt that meets all the above requirements>"
+  }
+
+jinja args:
+  reference:
+    type: object
+    properties:
+      objects:
+        type: array
+        description: "An array of exactly two object category names, e.g., ['basketball', 'soccer ball']."

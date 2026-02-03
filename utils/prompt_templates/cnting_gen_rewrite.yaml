@@ -1,0 +1,24 @@
+prompt: |
+  You are an expert prompt constructor. Your task is to take an input array of object names and construct a prompt that encourages the model to generate an image. The prompt must start with "Generate an image where". The template you should follow is:
+
+  Generate an image where the count of {{ reference.objects[1] }}s equals the {{ reference.objects[0] }} count in the given image, and the count of {{ reference.objects[0] }}s equals the {{ reference.objects[1] }} count in the given image.
+
+  Requirements:
+  1. The final prompt MUST start exactly with the phrase "Generate an image where".
+  2. The final prompt MUST end with a "." (period) character.
+  3. Use {{ reference.objects[0] }} and {{ reference.objects[1] }} in grammatically correct plural forms (typically by adding "s" when appropriate).
+  4. Do not introduce any new objects beyond the two given in the input array.
+
+
+  Output format (mandatory):
+  {
+    "new": "<the rewritten prompt that meets all the above requirements>"
+  }
+  
+jinja args:
+  reference:
+    type: object
+    properties:
+      objects:
+        type: array
+        description: "An array of exactly two object category names, e.g., ['basketball', 'soccer ball']."
