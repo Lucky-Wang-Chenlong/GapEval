@@ -44,11 +44,17 @@ To further explore the underlying mechanism, we conduct an empirical study from 
 
 - [:memo: Contents](#memo-contents)
 - [💡 Updates \& News](#-updates--news)
-<!-- - [💾 Environment](#-environment) -->
 - [🚀 Evaluation](#-evaluation)
 - [⚠️ TODO List](#️-todo-list)
 - [👍 Acknowledgement](#-acknowledgement)
-- [⭐ Citation](#⭐-citation)
+- [⭐ Citation](#-citation)
+<!-- - [💾 Environment](#-environment) -->
+- [:memo: Contents](#memo-contents)
+- [💡 Updates \& News](#-updates--news)
+- [🚀 Evaluation](#-evaluation)
+- [⚠️ TODO List](#️-todo-list)
+- [👍 Acknowledgement](#-acknowledgement)
+- [⭐ Citation](#-citation)
 
 ## 💡 Updates & News
 - [2026/2] Our paper has been released on Arxiv. Our dataset will be released soon.
@@ -121,6 +127,45 @@ cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
   print(output["save"])               # output directory
   print(output["object"])             # target object description
   print(output["rewrite_prompt"])     # rewrite prompt
+  ```
+
+4. **Evaluate Gap Between Understanding and Generation**
+
+  Prepare a JSON file in the following format:
+  ```json
+    {
+      "model_name": [
+    [p11, p10, p01, p00],
+    [p11, p10, p01, p00],
+    [p11, p10, p01, p00],
+    [p11, p10, p01, p00]
+      ]
+    }
+  ```
+
+  Each row is:
+  - `p11`: both tasks are done successfully
+  - `p10`: understanding succeeds, generation fails
+  - `p01`: generation succeeds, understanding fails
+  - `p00`: both tasks fail
+
+  Then run:
+  ```bash
+  python evaluate.py  /path/to/your/model/test/json/file
+  ```
+
+
+  The script will write a new file in the same folder with the suffix `_gapres.json`.
+  Example output:
+  ```json
+  {
+    "results": {
+      "model_name": {
+        "gaps": [xxx,xxx,xxx,xxx],
+        "gap_mean": xxx
+      }
+    }
+  }
   ```
 
 
