@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Quantifying the Gap between Understanding and Generation within Unified Multimodal Models</h1>
 <a href="https://arxiv.org/abs/2601.13304"><img src="https://img.shields.io/badge/arXiv-2601.13414-b31b1b" alt="arXiv"></a>
-<a href="huggingface link"><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue'></a>
+<a href="https://huggingface.co/datasets/FrancisChen1/GapEval"><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue'></a>
 <br>
 <br>
 <strong>
@@ -57,7 +57,8 @@ To further explore the underlying mechanism, we conduct an empirical study from 
 - [⭐ Citation](#-citation)
 
 ## 💡 Updates & News
-- [2026/2] Our paper has been released on Arxiv. Our dataset will be released soon.
+- [2026/2] Our paper has been released on Arxiv.
+- [2026/2] GapEval dataset is available at `https://huggingface.co/datasets/FrancisChen1/GapEval`.
 
 <!-- ## 💾 Environment
 
@@ -89,10 +90,13 @@ cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
 1. **Load Dataset**
   ```python
   from datasets import load_dataset
-
-  repo_id = "Mwxinnn/CausalSpatial"
-  dataset = load_dataset(repo_id, "collision", split="train") # Load collision subset
+  
+  repo_id = "FrancisChen1/GapEval"
+  dataset = load_dataset(repo_id)
   ```
+
+  Dataset page:
+  `https://huggingface.co/datasets/FrancisChen1/GapEval`
 
 2. **Evaluate MLLMs on CausalSpatial**
 
