@@ -60,31 +60,6 @@ To further explore the underlying mechanism, we conduct an empirical study from 
 - [2026/2] Our paper has been released on Arxiv.
 - [2026/2] GapEval dataset is available at `https://huggingface.co/datasets/FrancisChen1/GapEval`.
 
-<!-- ## 💾 Environment
-
-1. **Submodules**
-```cli
-git submodule add https://github.com/facebookresearch/map-anything.git ./sub_module/map_anything
-git submodule add https://github.com/bytedance/ATI.git ./sub_module/ati
-```
-
-2. **Environment**
-```cli
-pip install -r requirements.txt
-```
-
-3. **Download ATI Model**
-```cli
-huggingface-cli download Wan-AI/Wan2.1-I2V-14B-480P --local-dir ./Wan2.1-I2V-14B-480P
-huggingface-cli download bytedance-research/ATI --local-dir ./Wan2.1-ATI-14B-480P
-
-cp ./Wan2.1-I2V-14B-480P/Wan2.1_VAE.pth ./Wan2.1-ATI-14B-480P/
-cp ./Wan2.1-I2V-14B-480P/models_t5_umt5-xxl-enc-bf16.pth ./Wan2.1-ATI-14B-480P/
-cp ./Wan2.1-I2V-14B-480P/models_clip_open-clip-xlm-roberta-large-vit-huge-14.pth ./Wan2.1-ATI-14B-480P/
-cp -r ./Wan2.1-I2V-14B-480P/xlm-roberta-large ./Wan2.1-ATI-14B-480P/
-cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
-``` -->
-
 ## 🚀 Evaluation
 
 1. **Load Dataset**
@@ -105,35 +80,8 @@ cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
   ```cli
   python eval.py --model_path GPT5 --output_file ./output-gpt5 --subset collision+physics
   ```
-
-3. **Inference COW**
-
-  Note that, COW requires two gpus (80G) for generation. One is for trajectory prediction, the other is for video generation.
-  ```python
-  from pipeline import COW
-
-  # Prepare COW instance
-  cow = COW(
-      frame_num=60,                                   # frame number of generated video
-      delta_t=3 * (1.0 / 30.0),                       # time interval between frames
-      model="Qwen/Qwen3-VL-30B-A3B-Instruct",         # MLLM model
-      map_anything_model="facebook/map-anything",
-      debug=True                                      # visualize the trajectory when set True
-  )
-
-  output_dict = cow(
-      prompt,             # question prompt in CausalSpatial
-      save_dir,           
-      image_a_path,       # question image in CausalSpatial
-      generate=True,
-  )
-
-  print(output["save"])               # output directory
-  print(output["object"])             # target object description
-  print(output["rewrite_prompt"])     # rewrite prompt
-  ```
-
-4. **Evaluate Gap Between Understanding and Generation**
+ 
+3. **Evaluate Gap Between Understanding and Generation**
 
   Prepare a JSON file in the following format:
   ```json
@@ -158,7 +106,6 @@ cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
   python evaluate.py  /path/to/your/model/test/json/file
   ```
 
-
   The script will write a new file in the same folder with the suffix `_gapres.json`.
   Example output:
   ```json
@@ -172,19 +119,9 @@ cp -r ./Wan2.1-I2V-14B-480P/google ./Wan2.1-ATI-14B-480P/
   }
   ```
 
-
 ## ⚠️ TODO List
-- [ ] Adaptation to VLMEvalKit
-- [ ] COW inference for parabolic motion
 - [x] Dataset Release
 - [x] Paper Release
-
-## 👍 Acknowledgement
-Many thanks to all coauthors for their invaluable effort in this project!
-
-We also thank these great projects:
-- [MapAnything](https://github.com/facebookresearch/map-anything) is a simple, end-to-end trained transformer model that directly regresses the factored metric 3D geometry of a scene given various types of inputs (images, calibration, poses, or depth). 
-- [ATI](https://github.com/bytedance/ATI) a trajectory-based motion control framework that unifies object, local and camera movements in video generation. 
 
 
 ## ⭐ Citation
