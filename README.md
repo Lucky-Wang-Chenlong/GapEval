@@ -48,17 +48,10 @@ To further explore the underlying mechanism, we conduct an empirical study from 
 - [⚠️ TODO List](#️-todo-list)
 - [👍 Acknowledgement](#-acknowledgement)
 - [⭐ Citation](#-citation)
-<!-- - [💾 Environment](#-environment) -->
-- [:memo: Contents](#memo-contents)
-- [💡 Updates \& News](#-updates--news)
-- [🚀 Evaluation](#-evaluation)
-- [⚠️ TODO List](#️-todo-list)
-- [👍 Acknowledgement](#-acknowledgement)
-- [⭐ Citation](#-citation)
 
 ## 💡 Updates & News
-- [2026/2] Our paper has been released on Arxiv.
-- [2026/2] GapEval dataset is available at `https://huggingface.co/datasets/FrancisChen1/GapEval`.
+- [2026/3] Our paper has been released on Arxiv.
+- [2026/3] GapEval dataset is available at `https://huggingface.co/datasets/FrancisChen1/GapEval`.
 
 ## 🚀 Evaluation
 
